@@ -24,7 +24,7 @@ class BlogPost extends Component{
         }
     }
 
-    ambilDataDariServerAPI = () => {                // fungsi untuk mengambil data dari API dengan penambahan sort dan order
+    ambilDataDariServerAPI = () => {    // fungsi untuk mengambil data dari API dengan penambahan sort dan order
         let ref = firebase.database().ref("/");
         ref.on("value", snapshot => {
             const state = snapshot.val();
@@ -80,14 +80,17 @@ class BlogPost extends Component{
         //     });
         let title = this.refs.judulArtikel.value;
         let body = this.refs.isiArtikel.value;
+        // let tanggal = this.refs.tanggalArtikel.value;
         let uid = this.refs.uid.value;
+        
 
-        if (uid && title && body){                  // Cek apakah semuad data memiliki nilai (tidak null)
+        if (uid && title &&  body){                  // Cek apakah semua data memiliki nilai (tidak null)
             const {listArtikel} = this.state;
             const indeksArtikel = listArtikel.findIndex(data => {
                 return data.uid === uid;
             })
             listArtikel[indeksArtikel].title = title;
+            // listArtikel[indeksArtikel].tanggal = tanggal;
             listArtikel[indeksArtikel].body = body;
             this.setState({listArtikel});
         } else if (title && body){                  // Cek jika apakah tidak ada data di server
@@ -97,6 +100,7 @@ class BlogPost extends Component{
             this.setState({listArtikel});
         }
 
+        // this.refs.tanggalArtikel.value = "";
         this.refs.judulArtikel.value = "";
         this.refs.isiArtikel.value = "";
         this.refs.uid.value = "";
@@ -105,26 +109,29 @@ class BlogPost extends Component{
     render() {
         return(
             <div className="post-artikel">
+                 <h2>Enter News Data </h2>
                 <div className="form pb-2 border-bottom">
                     <div className="form-group row">
-                        <label htmlFor="title" className="col-sm-2 col-form-label">Judul Berita</label>
+                        <label htmlFor="title" className="col-sm-2 col-form-label">News Headline</label>
                         <div className="col-sm-10">
                             <input type="text" className="form-control" id="title" name="title" ref="judulArtikel" onChange={this.handleTambahArtikel}/>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="body" className="col-sm-2 col-form-label">Isi Berita</label>
+                        <label htmlFor="body" className="col-sm-2 col-form-label">News Content</label>
                         <div className="col-sm-10">
                             <textarea className="form-control" id="body" name="body" rows="3" ref="isiArtikel" onChange={this.handleTambahArtikel}></textarea>
                         </div>
                     </div>
+                    
                     <input type="hidden" name="uid" ref="uid"/>
-                    <button type="submit" className="btn btn-primary" onClick={this.handleTombolSimpan}>Simpan</button>
+                    <button type="submit" className="btn btn-primary" onClick={this.handleTombolSimpan}>Upload</button>
                 </div>
-                <h2>Daftar Artikel</h2>
+
+                <h2>List News Today </h2>
                 {
                     this.state.listArtikel.map(artikel => {  // looping dan masukkan untuk setiap data yang ada di listArtikel ke variabel artikel
-                        return <Post key={artikel.uid} judul={artikel.title} isi={artikel.body} idArtikel={artikel.uid} hapusArtikel={this.handleHapusArtikel}/>     // mappingkan data json dari API sesuai dengan kategorinya
+                        return <Post key={artikel.uid} judul={artikel.title} tanggal={artikel.body} isi={artikel.body} idArtikel={artikel.uid} hapusArtikel={this.handleHapusArtikel}/>     // mappingkan data json dari API sesuai dengan kategorinya
                     })
                 }
             </div>

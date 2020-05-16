@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from "react";
 import logo from './logo.svg';
-import './App.css';
+// import Blogpost from './container/BlogPost/BlogPost';
+import Login from "./Login";
 
 function App() {
   return (

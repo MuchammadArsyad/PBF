@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyB2yY7-7HAv-7-O6mfTqJRQwKQLAsZc1FU",
-    authDomain: "fir-login-5e7cf.firebaseapp.com",
-    databaseURL: "https://fir-login-5e7cf.firebaseio.com",
-    projectId: "fir-login-5e7cf",
-    storageBucket: "fir-login-5e7cf.appspot.com",
-    messagingSenderId: "349463083994",
-    appId: "1:349463083994:web:9f0ea1dc224be5d1189ee3",
-    measurementId: "G-CNGMYCDHVR"
-  };
+  apiKey: "AIzaSyBEGsYYPT2BVuvpjA-03u9unXqt3TEMyuo",
+  authDomain: "pbf-uas1.firebaseapp.com",
+  databaseURL: "https://pbf-uas1.firebaseio.com",
+  projectId: "pbf-uas1",
+  storageBucket: "pbf-uas1.appspot.com",
+  messagingSenderId: "1015548472374",
+  appId: "1:1015548472374:web:5752687d0cfdb924187c97",
+  measurementId: "G-G0MWWTSP7N"
+};
 
   export default firebaseConfig;
